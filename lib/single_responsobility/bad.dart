@@ -10,11 +10,7 @@ class TravelBooking {
     print("Booking to $destination");
   }
 
-  void sendConfirmation() {
-    print("Sending confirmation email");
-  }
-
-  void chargeCreditCard() {
+  void chargePayment() {
     print("Charging credit card for $price");
   }
 }
@@ -24,7 +20,5 @@ void main() {
 
   booking.book();
 
-  booking.sendConfirmation();
-
-  booking.chargeCreditCard();
+  booking.chargePayment();
 }

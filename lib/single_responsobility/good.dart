@@ -11,12 +11,6 @@ class BookingService {
   }
 }
 
-class NotificationService {
-  void sendConfirmation(String destination) {
-    print("Sending confirmation for $destination");
-  }
-}
-
 abstract class PaymentMethod {
   void pay(double amount);
 }
@@ -40,9 +34,6 @@ void main() {
 
   var bookingService = BookingService();
   bookingService.book(booking);
-
-  var notificationService = NotificationService();
-  notificationService.sendConfirmation(booking.destination);
 
   PaymentMethod paymentMethod = CreditCardPayment();
   paymentMethod.pay(booking.price);
