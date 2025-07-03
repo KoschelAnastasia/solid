@@ -10,8 +10,17 @@ class TravelBooking {
     print("Booking to $destination");
   }
 
-  void chargePayment() {
-    print("Charging credit card for $price");
+  void pay(String paymentType, double amount) {
+    if (paymentType == "credit_card") {
+      print('Volidation...');
+      print('Payment of $amount was made with a credit card.');
+    } else if (paymentType == "paypal") {
+      print('Volidation...');
+      print('Payment of $amount was made with a PayPal.');
+    } else {
+      print('Volidation...');
+      print("Unknown payment method... Cannot process payment.");
+    }
   }
 }
 
@@ -20,5 +29,5 @@ void main() {
 
   booking.book();
 
-  booking.chargePayment();
+  booking.pay('credit_card', booking.price);
 }
