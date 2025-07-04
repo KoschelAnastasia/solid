@@ -5,35 +5,26 @@ class TravelBooking {
   TravelBooking(this.destination, this.price);
 }
 
-class BookingService {
-  void book(TravelBooking booking) {
-    print("Booking to ${booking.destination}");
-  }
-}
-
 abstract class PaymentMethod {
-  void pay(double amount);
+  void pay(double amount, {String? destination});
 }
 
 class CreditCardPayment implements PaymentMethod {
   @override
-  void pay(double amount) {
-    print("Charging credit card for \$$amount");
+  void pay(double amount, {String? destination}) {
+    print('Paying with credit card for booking to $destination with amount: \$$amount');
   }
 }
 
 class PayPalPayment implements PaymentMethod {
   @override
-  void pay(double amount) {
-    print("Charging PayPal for \$$amount");
+  void pay(double amount, {String? destination}) {
+    print('Paying with PayPal for booking to $destination with amount: \$$amount');
   }
 }
 
 void main() {
   var booking = TravelBooking("Paris", 1000.0);
-
-  var bookingService = BookingService();
-  bookingService.book(booking);
 
   PaymentMethod paymentMethod = CreditCardPayment();
   paymentMethod.pay(booking.price);
