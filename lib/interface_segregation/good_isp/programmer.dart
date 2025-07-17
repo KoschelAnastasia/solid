@@ -1,4 +1,4 @@
-import 'good_isp.dart';
+import 'good_interface.dart';
 
 class Programmer extends Worker {
   @override
@@ -12,32 +12,37 @@ class Programmer extends Worker {
   }
 
   @override
+  void speakWithColleagues() {
+    print('Discussing the latest tech trends with colleagues...');
+  }
+
+  @override
   void eat() {
-    // TODO: implement eat
+    print('Eating a pizza while coding...');
   }
 
   @override
   void exercise() {
-    // TODO: implement exercise
+    print('Standing up to take a coffee');
   }
 
   @override
   void read() {
-    // TODO: implement read
+    print('Reading documentation.');
   }
 
   @override
   void sleep() {
-    // TODO: implement sleep
+    print('Sleeping after a long day of coding... dreaming of algorithms... having nightmares about bugs...');
   }
 
   @override
   void socialize() {
-    // TODO: implement socialize
+    print('Make a pull request');
   }
 
   @override
   void travel() {
-    // TODO: implement travel
+    print('Traveling to a tech conference');
   }
 }

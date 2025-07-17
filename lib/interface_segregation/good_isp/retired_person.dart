@@ -1,4 +1,4 @@
-import 'good_isp.dart';
+import 'good_interface.dart';
 
 class RetiredPerson extends Person {
   @override
@@ -8,31 +8,31 @@ class RetiredPerson extends Person {
 
   @override
   void eat() {
-    // TODO: implement eat
+    print('Eating a healthy meal...');
   }
 
   @override
   void exercise() {
-    // TODO: implement exercise
+    print('Taking a walk in the park...');
   }
 
   @override
   void read() {
-    // TODO: implement read
+    print('Reading a book...');
   }
 
   @override
   void sleep() {
-    // TODO: implement sleep
+    print('Sleeping peacefully... dreaming about Titanic... and Jack Dawson...');
   }
 
   @override
   void socialize() {
-    // TODO: implement socialize
+    print('Meeting friends for tea...');
   }
 
   @override
   void travel() {
-    // TODO: implement travel
+    print('Traveling to a new country...');
   }
 }

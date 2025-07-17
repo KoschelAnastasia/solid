@@ -1,4 +1,4 @@
-import 'interface.dart';
+import 'bad_interface.dart';
 
 class RetiredPerson implements Person {
   @override

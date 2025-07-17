@@ -1,4 +1,4 @@
-import 'interface.dart';
+import 'bad_interface.dart';
 
 class Programmer implements Person {
   @override
@@ -13,7 +13,7 @@ class Programmer implements Person {
 
   @override
   void eat() {
-    print('Programmer eat: Eating a pizza.');
+    print('Programmer eat: Eating a pizza while coding...');
   }
 
   @override

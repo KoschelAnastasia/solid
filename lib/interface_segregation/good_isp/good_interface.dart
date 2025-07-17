@@ -13,8 +13,7 @@ abstract class Person {
 
 abstract class Worker extends Person {
   void work();
-  void speakWithColleagues() {}
-  void attendMeetings() {}
+  void speakWithColleagues();
 }
 
 void main() {
