@@ -19,8 +19,14 @@ abstract class Worker extends Person {
 void main() {
   final Worker programmer = Programmer();
   programmer.work();
+  programmer.eat();
   programmer.rest();
+  programmer.sleep();
+
+  print('\n---------------------------------\n');
 
   final Person retired = RetiredPerson();
   retired.rest();
+  retired.eat();
+  retired.sleep();
 }
