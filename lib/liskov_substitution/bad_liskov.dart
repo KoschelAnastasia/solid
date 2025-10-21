@@ -22,14 +22,19 @@
 
 abstract class Bird {
   void fly();
+  void eat();
 }
 
 class Duck implements Bird {
   @override
   void fly() => print('Duck flying!');
+  @override
+  void eat() => print('Eat like a duck');
 }
 
 class Penguin implements Bird {
   @override
   void fly() => throw UnsupportedError("Penguins can't fly!");
+  @override
+  void eat() => print('Eat like a penguin');
 }
