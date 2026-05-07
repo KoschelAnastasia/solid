@@ -2,31 +2,49 @@ import 'programmer.dart';
 import 'retired_person.dart';
 
 // Interface Segregation Principle:
-// Коротко: Программные сущености не должны зависить от методов, которые они не используют
-// Более развернуто: По сути этот метод говорит о том, что нужно избегать слишком толстых интерфейсов, обычно их стоит
-// разделять на более маленькие и специфические таким образом, чтобы программные сущности маленьких интерфейсов знали
-// только о методах, которые необходимы им в работе. В итоге, при изменении метода интерфейса не должны меняться
-// программные сущности, которые этот метод не используют.
+
+// Kurz gesagt: Software-Einheiten sollten nicht von Methoden abhängen, die sie selbst nicht verwenden.
 //
-//-------------------------------------------- !ВНИМАНИЕ!------------------------------------------------------------
-// Если вы будете разбирать этот метод без меня самостоятельно, то я рекомендую во второй вкладке открывать конкретную
-// реализацию абстрактного класса, чтобы лучше понимать о чем я говорю.
+// Etwas ausführlicher: Im Kern sagt dieses Prinzip, dass wir zu große, also „fette“ Interfaces vermeiden sollten.
+//
+// Stattdessen sollten solche Interfaces in kleinere und spezifischere Interfaces aufgeteilt werden. Dadurch kennen
+// Software-Einheiten nur die Methoden, die sie für ihre eigene Arbeit tatsächlich benötigen.
+//
+// Das Ergebnis: Wenn sich eine Methode in einem Interface ändert, müssen sich keine Software-Einheiten ändern,
+// die diese Methode gar nicht verwenden.
+
+//-------------------------------------------- !ACHTUNG!------------------------------------------------------------
+// Wenn ihr dieses Prinzip ohne mich selbstständig durcharbeitet, empfehle ich euch, in einem zweiten Tab die konkrete Implementierung
+// der abstrakten Klasse zu öffnen. So versteht ihr besser, worüber ich spreche.
 //-------------------------------------------------------------------------------------------------------------------
 //
-// Давайте внимательно посмотрим на наш интерфейс, у интерфейса Person есть разные методы например: work(), rest(), и eat()
-// А теперь давайте рассмотрим конкретные имплементации этого интерфейса в файле programmer.dart и retired_person.dart
-// По сути с помощью этих подклассов мы создаем 2 объекта Программист и Пенсионер. И здесь начинается главная проблема.
-// Наш интерфейс слишком большой и он содержит метод (work()), о которых знают оба подкласса, но только один из них, а именно класс
-// Programmer должен его имплементировать, класс RetiredPerson знает об этом методе и имеет пустую реализацию, так как в
-// логике нашей программы пенсионеры работать не должны. И казалось бы, ну знает и знает, что в этом такого? Но давайте посмотрим
-// на нашу функцию main более внимательно и запустим ее. При изучении кода и запуске мы заметим, что все вызываемые функции
-// для объекта Programmer будут работать, но при вызове ровно тех же методом для объекта RetiredPerson мы замечаем проблему
-// с тем что, при вызове метода work() ничего не происходит, потому что реальной реализации этого метода work у нас нет,
-// но при этом и ошибки не возникает, которая бы сигнализировала бы нам, что что-то пошло не так, так как у насть просто
-// есть пустая заглушка. Таким образом мы нарушаем ISP, так как наш толстый метод, дает сущности (RetiredPerson) знание
-// о методе, который ему в работе не нужен.
+// Schauen wir uns unser Interface genauer an. Das Interface Person enthält verschiedene Methoden, Zum Beispiel work(),
+// rest() und eat(). Jetzt betrachten wir die konkreten Implementierungen dieses Interfaces in den Dateien programmer.dart und retired_person.dart.
+// Im Grunde erzeugen wir mit diesen Unterklassen zwei Objekte: Programmer und RetiredPerson.
 //
-// Как решить эту проблему? Давайте прейдем в файл lib\interface_segregation\good_isp\good_interface.dart и посмотрим...
+// Genau hier beginnt das eigentliche Problem.
+//
+// Unser Interface ist zu groß. Es enthält unter anderem die Methode work(). Beide Unterklassen kennen diese Methode,
+// aber nur eine davon sollte sie wirklich implementieren: nämlich die Klasse Programmer.
+//
+// Die Klasse RetiredPerson kennt diese Methode ebenfalls und besitzt nur eine leere Implementierung, weil Rentner in
+// der Logik unseres Programms nicht arbeiten sollen.
+//
+// Auf den ersten Blick könnte man sagen: Na gut, sie kennt die Methode eben. Was ist daran so schlimm? Schauen wir uns
+// dafür aber die Funktion main genauer an und führen wir sie aus. Beim Lesen und Ausführen des Codes sehen wir,
+// dass alle aufgerufenen Methoden für das Objekt Programmer funktionieren.
+//
+// Wenn wir jedoch dieselben Methoden für das Objekt RetiredPerson aufrufen, erkennen wir das Problem:
+//
+// Beim Aufruf von work() passiert nichts, weil es keine echte Implementierung dieser Methode gibt. Gleichzeitig entsteht
+// aber auch kein Fehler, der uns signalisieren würde, dass etwas nicht stimmt. Stattdessen haben wir nur eine leere
+// Platzhalter-Implementierung.
+//
+// Genau dadurch verletzen wir das ISP: Unser zu großes Interface gibt der Entität RetiredPerson Wissen
+// über eine Methode, die sie für ihre Arbeit gar nicht benötigt.
+//
+// Wie lösen wir dieses Problem? Wechseln wir dazu in die Datei lib\interface_segregation\good_isp\good_interface.dart
+// und schauen uns das an ...
 
 abstract class Person {
   void work();

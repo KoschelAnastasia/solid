@@ -1,10 +1,17 @@
-// И вот она с первых строк та самая абстракция, которой нам не хватало, мы вводим абстрактный класс Devise и сразу же
-// избавляемся от зависимости от конкретной реализации и получаем то, чего хотели добиться:
-// 1) Модуль верхнего уровня Switcher не зависит от модуля нижнего уровня Lamp.
-// 2) Оба типа модулей зависят от одной и той же абстракции Devise.
-// 3) Абстракция Devise не зависит от деталей они обычно принадлежат верхнему уровню политики
-// 4) Зато детали, то есть конкретные реализации, например Lamp, зависят от абстракции, потому что обязаны реализовать
-// её методы (turnOn / turnOff).
+// Und direkt in den ersten Zeilen sehen wir genau die Abstraktion, die uns vorher gefehlt hat.
+//
+// Wir führen die abstrakte Klasse Device ein und lösen uns damit sofort von der Abhängigkeit zu einer konkreten Implementierung.
+//
+// Dadurch erreichen wir genau das, was wir erreichen wollten:
+//
+// 1) Das High-Level-Modul Switcher hängt nicht vom Low-Level-Modul Lamp ab.
+//
+// 2) Beide Arten von Modulen hängen von derselben Abstraktion ab: Device.
+//
+// 3) Die Abstraktion Device hängt nicht von Details ab. Abstraktionen gehören in der Regel zur höheren Ebene der Programmlogik.
+//
+// 4) Die Details, also konkrete Implementierungen wie zum Beispiel Lamp, hängen dagegen von der Abstraktion ab,
+//    weil sie deren Methoden implementieren müssen: turnOn und turnOff.
 
 abstract class Devise {
   bool turnOn();

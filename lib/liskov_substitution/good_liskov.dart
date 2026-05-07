@@ -1,14 +1,22 @@
-// Идея простая: не всем птицам нужен fly(). Поэтому мы не заставляем весь базовый тип Bird «обещать» полёт.
-// Вместо этого разделяем контракт: есть общий Bird (общее поведение) и есть FlyingBird — «летающие птицы».
-// Так мы гарантируем: любой FlyingBird действительно умеет fly(), а обычный Bird — не обязан.
+// Die Idee ist einfach: Nicht alle Vögel brauchen fly(). Deshalb zwingen wir den gesamten Basistyp Bird nicht dazu,
+// das Fliegen zu „versprechen“.
 //
-// Что это даёт:
-// - Мы сохраняем контракт: клиенты, которым нужен полёт, работают с FlyingBird и не получают сюрпризов.
-// - Нелетающие птицы (например, Penguin) больше не реализуют fly() и не бросают исключения.
-// - LSP соблюдён: подтипы не ослабляют постусловия и не нарушают инварианты базового типа.
-// - Бонусом это соответствует ISP: клиенты зависят только от нужного интерфейса.
+// Stattdessen teilen wir den Vertrag auf: Es gibt einen allgemeinen Typ Bird für gemeinsames Verhalten
+// und FlyingBird für Vögel, die tatsächlich fliegen können. So stellen wir sicher: Jede FlyingBird kann wirklich fly() ausführen,
+// während eine normale Bird dazu nicht verpflichtet ist.
 //
-// В итоге код предсказуем: Duck — FlyingBird и летает, Penguin — просто Bird и не пытается «летать через исключение».
+// Was bringt uns das?
+//
+// - Wir erhalten den Vertrag: Clients, die Flugverhalten benötigen, arbeiten mit FlyingBird und erleben keine Überraschungen.
+//
+// - Nicht fliegende Vögel, zum Beispiel Penguin, implementieren fly() nicht mehr und müssen keine Exceptions werfen.
+//
+// - Das LSP wird eingehalten: Subtypen schwächen keine Nachbedingungen ab und verletzen keine Invarianten des Basistyps.
+//
+// - Als zusätzlicher Vorteil entspricht diese Lösung auch dem ISP: Clients hängen nur von dem Interface ab, das sie tatsächlich benötigen.
+//
+// Am Ende ist der Code vorhersehbar: Duck ist eine FlyingBird und kann fliegen. Penguin ist einfach eine Bird
+// und versucht nicht, „über eine Exception zu fliegen“.
 
 abstract class Bird {
   void eat() => print('Bird is eating');

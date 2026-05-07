@@ -3,7 +3,7 @@ import 'bad_interface.dart';
 class RetiredPerson implements Person {
   @override
   void work() {
-    // Этот метод не должен вызываться для пенсионера,
+    // Die Methode ist nicht implementiert.
   }
 
   @override

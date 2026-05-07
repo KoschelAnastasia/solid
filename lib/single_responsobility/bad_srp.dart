@@ -1,28 +1,40 @@
-// Single Responsobility:
+// Single Responsibility:
 
-// Если коротко: Одна ответственность - одна роль.
-// Более раскрыто: Согласно SRP, класс должен иметь только одну причину для изменения.
+// Kurz gesagt: Eine Verantwortung – eine Rolle.
+// Etwas ausführlicher: Nach dem SRP sollte eine Klasse nur einen einzigen Grund haben, sich zu ändern.
 
-// Для примера возьмем систему бранирования путешествий, если мы внимательно посмотрим на нее то увидим, что помимо такой
-// информации как направление и цены внутри класса в ней есть метод оплаты и этот метод нетолько ответстенен за оплату
-// путешествия, но и за выбор метода оплаты.
+// Als Beispiel nehmen wir ein Reisebuchungssystem. Wenn wir es uns genauer ansehen, erkennen wir,
+// dass die Klasse neben Informationen wie Reiseziel und Preis auch eine Zahlungsmethode enthält.
+// Diese Methode ist jedoch nicht nur für die Bezahlung der Reise verantwortlich,
+// sondern auch für die Auswahl der konkreten Zahlungsmethode.
 
-// Таким образом в данном примере мы можем видеть наглядно нарушение SRP. Так как класс по сути имеет множество
-// несвязанных между собой ответственностей и у нас как у разработчиков может быть множество причин для того чтобы
-// этот класс редактировать, это несет в себе несколько опасностей:
+// In diesem Beispiel sehen wir also sehr deutlich eine Verletzung des SRP.
+// Die Klasse hat im Grunde mehrere Verantwortlichkeiten, die nicht direkt miteinander zusammenhängen.
+// Dadurch können wir als Entwickler viele unterschiedliche Gründe haben,
+// diese Klasse später ändern zu müssen. Das bringt mehrere Risiken mit sich:
 
-// - во-первых, из-за большого колличества ответственностей в одном классе меняя что-то в одном месте (например в оплате)
-// мы рискуем затронуть поведение логики в другом месте (например брноирования). Да, данный пример прост в чтении и
-// чисто визуально мы можем отделить одно от другого, но в больших проектах это будет уже большой проблемой
+// - Erstens: Durch die vielen Verantwortlichkeiten in einer einzigen Klasse riskieren wir,
+//   beim Ändern einer Stelle, zum Beispiel der Zahlungslogik,
+//   unbeabsichtigt das Verhalten an einer anderen Stelle zu beeinflussen,
+//   zum Beispiel die Buchungslogik.
+//   Ja, dieses Beispiel ist noch einfach zu lesen,
+//   und rein visuell können wir die Bereiche voneinander trennen.
+//   In größeren Projekten wird genau das aber schnell zu einem großen Problem.
 //
-// - во-вторых, мы слишком сильно привязываемся к деталям, наша метод pay содержит конкретные указания на конкретную оплату
-// и любое изменение например смена протокола оплаты, ввод дополнительнных проверок, да хоть простое логгирование для того
-// чтобы протестировать как это работает влечет за собой сильные изменения в коде всех методов оплаты
+// - Zweitens: Wir koppeln uns zu stark an konkrete Details.
+//   Unsere Methode pay enthält konkrete Anweisungen für konkrete Zahlungsarten.
+//   Jede Änderung, zum Beispiel ein Wechsel des Zahlungsprotokolls,
+//   zusätzliche Validierungen oder sogar einfaches Logging,
+//   um zu testen, wie die Zahlung funktioniert,
+//   führt zu größeren Änderungen im Code aller Zahlungsmethoden.
 //
-// - в третьих, если мы решим добавить новый метод оплаты, нам придется переписывать метод ответственный за оплату в целом.
+// - Drittens: Wenn wir eine neue Zahlungsmethode hinzufügen möchten,
+//   müssen wir die Methode ändern, die für die Zahlung insgesamt verantwortlich ist.
 //
-// таким образом, давая классам и функциям множесто ответственностей мы создаем места с потенциальными ошибками, как нам
-//этого избежать? Давай перейдем в файл lib\single_responsobility\good_srp.dart и посмотрим....
+// Wenn wir Klassen und Funktionen also zu viele Verantwortlichkeiten geben,
+// schaffen wir Stellen im Code, an denen Fehler besonders leicht entstehen können.
+// Wie können wir das vermeiden?
+// Wechseln wir dazu in die Datei lib\single_responsibility\good_srp.dart und schauen uns das an ...
 
 class TravelBooking {
   String destination;

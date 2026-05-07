@@ -1,19 +1,30 @@
-// Open/Close:
+// Open/Closed:
 
-// Коротко: Класс должен быть открыт для расширения и закрыт для модификации
-// Более раскрыто: Согласно Open/Close принципу, для имплементации новых функций мы не должны переписывать существующий
-// класс. Почему это важно? Модификация класса может повлечь за собой непредсказуемые последствия в тех местах в которых
-// этот класс используется во избежании этого мы должны стараться именно расширить класс, с помощью расширений мы можем
-// добиться нужного поведения при этом не меняя ничего в изначальном коде. Мы не исключаем изменения вовсе, мы локализуем
-// их, чтобы избежать регрессивных ошибок.
+// Kurz gesagt: Eine Klasse sollte offen für Erweiterung, aber geschlossen für Modifikation sein.
 //
-// Давайте рассмотрим это на примере. Допустим у нас есть класс, который расчитывает скидку для разных типов клиентов. И
-// изначально в попытке расширить функционал, мы просто добавляли новые условия в метод calculate. И хотя это работает
-// и метод еще довольно прост в чтении, уже сейчас можно заметить, что в случае добавления новых типов клиентов, он будет
-// становиться все сложнее и сложнее в понимании и чтении. Не говоря о том, что в самом методе мы слишком сильно привязываемся
-// к конкретным типам клиентов и суть метода (а она заключается в том чтобы расчитывать скидку) теряется.
+// Etwas ausführlicher: Nach dem Open/Closed Principle sollten wir für die Implementierung neuer Funktionalität keine
+// bestehende Klasse umschreiben.
 //
-// Как нам избежать этого? Давайте перейдем в файл lib\open_close.dart\good_op.dart и посмотрим....
+// Warum ist das wichtig?
+// Die Modifikation einer bestehenden Klasse kann unvorhersehbare Auswirkungen an den Stellen haben, an denen diese
+// Klasse verwendet wird.
+//
+// Um das zu vermeiden, sollten wir versuchen, das Verhalten der Klasse zu erweitern, anstatt ihren ursprünglichen Code
+// direkt zu verändern. Durch Erweiterungen können wir das gewünschte Verhalten hinzufügen, ohne etwas am bestehenden Code zu ändern.
+//
+// Das bedeutet nicht, dass Änderungen grundsätzlich ausgeschlossen sind. Wir lokalisieren Änderungen lediglich,
+// um Regressionsfehler möglichst zu vermeiden. Schauen wir uns das an einem Beispiel an. Angenommen, wir haben eine
+// Klasse, die Rabatte für unterschiedliche Kundentypen berechnet.
+//
+// Anfangs haben wir beim Erweitern der Funktionalität einfach neue Bedingungen zur Methode calculate hinzugefügt.
+// Und obwohl das funktioniert und die Methode noch relativ gut lesbar ist, sieht man bereits jetzt:
+//
+// Wenn weitere Kundentypen dazukommen, wird diese Methode immer schwieriger zu verstehen und zu lesen.
+// Außerdem koppeln wir uns innerhalb der Methode zu stark an konkrete Kundentypen.  Dadurch geht der eigentliche Zweck
+// der Methode verloren: nämlich den Rabatt zu berechnen.
+//
+// Wie können wir das vermeiden?
+// Wechseln wir dazu in die Datei lib\open_closed\good_ocp.dart und schauen uns das an ...
 
 class DiscountCalculator {
   double calculate(String customerType, double amount) {
