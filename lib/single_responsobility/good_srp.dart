@@ -50,5 +50,3 @@ void main() {
   PaymentMethod paymentMethod = CreditCardPayment();
   paymentMethod.pay(booking.price);
 }
-
-//bla bla
