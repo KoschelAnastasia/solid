@@ -1,16 +1,23 @@
-// Для того чтобы код было проще поддерживать мы можем следовать принципу SRP, а именно сделать так, чтобы классы/функции
-// имели только одну ответственности или роль. Таким образом разделяя ответсвенности мы добиваемся того, что у нас как у
-// программистов, есть по сути только одна причина модифицировать код и те изменения, которые мы вносим имееют легко
-// прогнозированные последствия для остального кода
+// Damit der Code einfacher zu warten ist, können wir dem SRP folgen.
+// Konkret bedeutet das: Klassen und Funktionen sollten jeweils nur eine Verantwortung beziehungsweise eine Rolle haben.
 //
-// К примеру:
-// Мы взяли пример плохого кода из lib\single_responsobility\bad_srp.dart и переписали его следуюя принципу SRP. И теперь
-// класс TravelBooking имеет конкретную ответсвеннсть он отвечает только за информацию о путешествии, которое человек хотел
-// бы оплатить с релевантной информацией в нашем случае: Направление и цена
+// Durch diese Trennung der Verantwortlichkeiten erreichen wir, dass wir als Entwickler im Idealfall nur einen einzigen Grund haben,
+// einen bestimmten Teil des Codes zu ändern. Außerdem lassen sich die Auswirkungen unserer Änderungen auf den
+// restlichen Code deutlich besser vorhersagen.
 //
-// Также мы вынесли методы оплаты и сделали его более гибким, создав обстрактный класс PaymentMethod, который определяет
-// метод pay. И теперь мы можем спокойно добавлять новые методы оплаты не меняя код класса TravelBooking и не затрагивая
-// существующие методы оплаты.
+// Zum Beispiel:
+//
+// Wir haben das Beispiel für schlechten Code aus lib\single_responsibility\bad_srp.dart genommen
+// und es nach dem SRP umgeschrieben.
+//
+// Jetzt hat die Klasse TravelBooking eine klar definierte Verantwortung: Sie ist nur für die Informationen zu der Reise zuständig,
+// die eine Person bezahlen möchte. In unserem Fall sind das die relevanten Daten: das Reiseziel und der Preis.
+//
+// Zusätzlich haben wir die Zahlungsmethoden ausgelagert und flexibler gestaltet. Dafür haben wir eine abstrakte Klasse
+// PaymentMethod erstellt, die die Methode pay definiert.
+//
+// Dadurch können wir jetzt problemlos neue Zahlungsmethoden hinzufügen, ohne den Code der Klasse TravelBooking zu ändern
+// und ohne bestehende Zahlungsmethoden zu beeinflussen.
 
 class TravelBooking {
   String destination;
@@ -43,3 +50,5 @@ void main() {
   PaymentMethod paymentMethod = CreditCardPayment();
   paymentMethod.pay(booking.price);
 }
+
+//bla bla

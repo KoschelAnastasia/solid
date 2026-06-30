@@ -1,18 +1,11 @@
-Для лучшего понимания того как работают все принципы здесь будет общая информация самих SOLID принципов, более детальная информация будет находится в коде хороших и плохих примеров. Если вы просматриваете это без моих комментариев на фоне данная информация будет служить путеводителем, просто открывайте нужный файл и оставляйте READMY открытым во второй вкладке. Внутри файлов с кодом также будет много комментариев, чтобы это было более понятно
+Orientierung
 
+Dieses README soll euch dabei helfen, die Beispiele zu den SOLID-Prinzipien besser einzuordnen. Die eigentlichen Erklärungen zu den einzelnen Prinzipien findet ihr direkt im Code der guten und schlechten Beispiele.
 
+Wenn ihr euch das Projekt außerhalb der Präsentation oder außerhalb des Unterrichts anschaut, empfehle ich euch, die Prinzipien in der richtigen Reihenfolge der Buchstaben durchzugehen: S, O, L, I, D.
 
-Single Responsobility:
+Beginnt dabei immer zuerst mit dem schlechten Beispiel. So könnt ihr besser erkennen, welches Problem im Code entsteht und warum der gute Ansatz dieses Problem löst.
 
-Если коротко: Одна ответственность - одна роль.
-Более раскрыто: Согласно SRP, класс должен иметь только одну причину для изменения. Давайте рассмотрим это на примере и перейдем в файл: lib\single_responsobility\bad_single_responsobility.dart 
-
-
-Open/Close:
-
-Коротко: Класс должен быть открыт для расширения и закрыт для модификации
-Более раскрыто: Согласно Open/Close принципу, для имплементации новых функций мы не должны переписывать существующий класс. Почему это важно? Модификация класса может повлечь за собой непредсказуемые последствия в тех местах в которых этот класс используется во избежании  этого мы можем расширить класс, с помощью расширений мы можем добиться нужного поведения при этом не меняя ничего в изначальном коде. Давайте рассмотрим это на примере и перейдем в файл:
-
-
+Ich habe versucht, den Code so weit wie möglich zu vereinfachen und möglichst verständliche Beispiele zu wählen. Das Ziel ist nicht, reale und komplexe Probleme vollständig abzubilden, sondern zu verstehen, wofür die SOLID-Prinzipien da sind und welches Grundproblem sie jeweils lösen.
 
 

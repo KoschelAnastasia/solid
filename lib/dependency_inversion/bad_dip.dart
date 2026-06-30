@@ -1,22 +1,35 @@
-// Dependency inversion:
-// Коротко: Классы должны зависить от абстракций, а не от конкретных деталей
-// Подробно: Модули верхних уровней не должны зависеть от модулей нижних уровней. Оба типа модулей должны зависеть от
-// абстракций. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций.
+// Dependency Inversion:
+
+// Kurz gesagt: Klassen sollten von Abstraktionen abhängen, nicht von konkreten Details.
 //
-// Давай разберемся, что это означает на практике:
-// Ты видишь перед собой 2 класса, класс Lamp и Switcher. Класс Lamp имеет 2 метода для включения и выключения, которые
-// измиеняют состояние булевой переменной. Класс Switcher принимает в себя объект лампы и имеет свой метод pressedSwitcher
-// который меняет состояние переменной сигнализирующей о нажатии на Switcher, а также использует методы объекта лампы
-// чтобы включать и выключать ее в зависимости от текущего состояни в котором находится объект.
+// Etwas ausführlicher: Module auf höherer Ebene sollten nicht von Modulen auf niedrigerer Ebene abhängen. Beide Arten
+// von Modulen sollten von Abstraktionen abhängen.
 //
-// Если мы запустим код, то увидим, что все работает, мы включаем и выключаем лампу и не имеем больших проблем. Но проблема
-// есть и она большая, наш класс Switcher это абсолютно ограниченный класс расчитанный исключительно на один объект, если
-// завтра мы решим, что включаться и выключаться должна не только лампа, а например вентилятор нам придется модифицировать
-// класс Switcher и таким образом мы нарушим не только DIP, но и OSP, так как классы должны быть открыты для расширения,
-// а не для модификации.
-// Тоесть по сути мы имеем передо собой плохо расширяемый код... Как это исправить? Давай перейдем в файл
-// lib\dependency_inversion\good_dip.dart и посмотрим.
+// Abstraktionen sollten nicht von Details abhängen. Details sollten von Abstraktionen abhängen. Schauen wir uns an,
+// was das in der Praxis bedeutet:
 //
+// Vor uns sehen wir zwei Klassen: Lamp und Switcher. Die Klasse Lamp hat zwei Methoden zum Ein- und Ausschalten.
+// Diese Methoden verändern den Zustand einer booleschen Variable.
+//
+// Die Klasse Switcher nimmt ein Lamp-Objekt entgegen und besitzt eine eigene Methode pressedSwitcher. Diese Methode
+// ändert den Zustand einer Variable, die signalisiert, ob der Switcher gedrückt wurde. Außerdem verwendet sie die
+// Methoden des Lamp-Objekts, um die Lampe abhängig vom aktuellen Zustand ein- oder auszuschalten.
+//
+// Wenn wir den Code ausführen, sehen wir, dass zunächst alles funktioniert. Wir können die Lampe ein- und ausschalten
+// und haben auf den ersten Blick keine großen Probleme.
+//
+// Aber es gibt ein Problem, und dieses Problem ist wichtig:
+//
+// Unsere Klasse Switcher ist eine sehr stark eingeschränkte Klasse. Sie ist ausschließlich auf ein konkretes Objekt ausgelegt.
+//
+// Wenn wir morgen entscheiden, dass nicht nur eine Lampe ein- und ausgeschaltet werden soll, sondern zum Beispiel auch
+// ein Ventilator, dann müssten wir die Klasse Switcher modifizieren. Dadurch verletzen wir nicht nur das DIP,
+// sondern auch das OCP.
+//
+// Denn Klassen sollten offen für Erweiterung, aber geschlossen für Modifikation sein. Im Grunde haben wir hier also Code,
+// der sich schlecht erweitern lässt.
+//
+// Wie können wir das verbessern? Wechseln wir dazu in die Datei lib\dependency_inversion\good_dip.dart und schauen uns das an.
 
 class Lamp {
   bool _glow = false;

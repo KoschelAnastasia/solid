@@ -1,15 +1,20 @@
-// Что мы сделали, чтобы избежать нарушения принципа открытости/закрытости?
-// Если внимательно посмотреть на код, то можно увидеть, что мы больше не привязываемся к конкретным клиентам. Для улучшения
-// кодовой базы мы прибегаем к паттерну дизайна Stratagy:
+// Was haben wir gemacht, um eine Verletzung des Open/Closed Principle zu vermeiden?
 //
-// 1. Мы создаем абстрактный класс DiscountStrategy, который определяет метол calculate.
-// 2. Затем мы создаем конкретные классы для каждого типа клиента, которые реализуют этот интерфейс, каждый из них реализует
-// метод calculate по своему.
-// 3. Затем мы содаем класс DiscountCalculator, который ничего не знает о конкретной имплементации конкретной стратегии,
-// его главная задача - принимать стратегию и использовать ее для расчета скидки.
+// Wenn wir uns den Code genauer ansehen, erkennen wir, dass wir nicht mehr direkt an konkrete Kundentypen gekoppelt sind.
 //
-// Таким образом мы получаем понятную, расширяемую структуру, которая позволяет нам легко добавлять новые стратении скидок
-// не боясь нарушить существующий код.
+// Um die Codebasis zu verbessern, verwenden wir das Strategy Design Pattern:
+//
+// 1. Wir erstellen eine abstrakte Klasse DiscountStrategy, die die Methode calculate definiert.
+//
+// 2. Danach erstellen wir konkrete Klassen für jeden Kundentyp, die dieses Interface implementieren. Jede dieser Klassen
+// implementiert die Methode calculate auf ihre eigene Weise.
+//
+// 3. Anschließend erstellen wir die Klasse DiscountCalculator. Diese Klasse weiß nichts über die konkrete Implementierung
+// einer bestimmten Strategie. Ihre Hauptaufgabe besteht darin, eine Strategie entgegenzunehmen und sie für die
+// Berechnung des Rabatts zu verwenden.
+//
+// Dadurch erhalten wir eine klare und erweiterbare Struktur. Sie ermöglicht es uns, neue Rabattstrategien einfach hinzuzufügen,
+// ohne Angst haben zu müssen, bestehenden Code zu beschädigen.
 abstract class DiscountStrategy {
   double calculate(double amount);
 }

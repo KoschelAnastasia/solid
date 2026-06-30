@@ -1,30 +1,36 @@
 import 'programmer.dart';
 import 'retired_person.dart';
-// большой интерфейс на более маленькие и специфичные и, по сути, снова создаём иерархию классов, где Worker используется
-// как специфичный интерфейс/тип для работающих людей, который умеет всё, что умеет Person, и добавляет специфичное для
-// данной ситуации. Таким образом мы достигаем того, что только конкретная имплементация интерфейса Worker (Programmer)
-// имеет метод работы. Любые конкретные имплементации Person (RetiredPerson, а также, если мы, например, захотим сделать
-// класс Child) не будут «знать» о методах (и не смогут их вызвать), которые они не используют.
+// Wir teilen das große Interface in kleinere und spezifischere Interfaces auf und erstellen damit im Grunde wieder eine Klassenhierarchie.
+// Dabei wird Worker als spezifisches Interface beziehungsweise als spezifischer Typ für arbeitende Personen verwendet.
+// Worker kann alles, was Person kann, und erweitert dieses Verhalten um das, was in dieser konkreten Situation zusätzlich
+// benötigt wird. Dadurch erreichen wir, dass nur eine konkrete Implementierung des Interfaces Worker, in unserem Fall Programmer,
+// die Methode für das Arbeiten besitzt.
 //
-// Хорошо, мы разобрали, что такое Interface Segregation Principle, но, возможно, теперь у тебя возникает другой вопрос:
-// а в чём разница между принципом Liskov Substitution и Interface Segregation Principle? Вроде оба про интерфейсы и
-// про то, что их стоит делать более специфичными…
+// Alle konkreten Implementierungen von Person, zum Beispiel RetiredPerson oder auch Child, falls wir später eine solche
+// Klasse erstellen möchten, wissen nichts über Methoden, die sie selbst nicht verwenden, und können diese Methoden auch nicht aufrufen.
 //
-// Это не совсем так. Давайте посмотрим, в чём отличие:
+// Gut, wir haben jetzt besprochen, was das Interface Segregation Principle ist. Vielleicht entsteht jetzt aber eine andere Frage:
+// Worin liegt eigentlich der Unterschied zwischen dem Liskov Substitution Principle und dem Interface Segregation Principle?
 //
-// Главное отличие: Liskov Substitution — про поведение. Наделяя подкласс несвойственными ему функциями или, наоборот,
-// не реализуя функции, которые он не может выполнять, подкласс нарушает поведение базового класса — это вызывает
-// непредсказуемые логические ошибки. Мы проектируем гибкую систему, где подкласс может быть подставлен как экземпляр
-// базового класса — без сюрпризов.
+// Auf den ersten Blick wirken beide Prinzipien ähnlich. Beide haben mit Interfaces zu tun und beide scheinen zu sagen,
+// dass Interfaces spezifischer gestaltet werden sollten. Das stimmt aber nur teilweise. Schauen wir uns den Unterschied genauer an:
 //
-// Тогда как при нарушении Interface Segregation подкласс поведение не ломает, но получает лишние зависимости:
-// ему навязывают методы, которые по сути не нужны, и из-за недостаточно специфичного интерфейса приходится их
-// реализовывать (часто пустыми заглушками).
+// Der wichtigste Unterschied ist: Das Liskov Substitution Principle beschäftigt sich mit Verhalten. Wenn wir einer
+// Unterklasse Funktionen geben, die nicht zu ihr passen, oder wenn wir Funktionen nicht korrekt implementieren,
+// die sie laut Vertrag ausführen können müsste, dann verletzt die Unterklasse das erwartete Verhalten der Basisklasse.
+// Das führt zu unvorhersehbaren logischen Fehlern. Beim LSP entwerfen wir also ein flexibles System, in dem eine Unterklasse
+// als Instanz der Basisklasse eingesetzt werden kann, ohne Überraschungen im Verhalten zu verursachen.
 //
-// Таким образом, фокус в принципе Liskov Substitution стоит именно на поведении классов и подклассов для достижения
-// ожидаемого результата, тогда как Interface Segregation больше обращает внимание на структуру интерфейсов — на их
-// чистоту и изолированность — чтобы избежать навязывания ненужных зависимостей.
+// Beim Interface Segregation Principle ist der Schwerpunkt ein anderer. Wenn wir das ISP verletzen, bricht die Unterklasse
+// nicht unbedingt das Verhalten, bekommt aber unnötige Abhängigkeiten aufgezwungen. Ihr werden Methoden vorgeschrieben,
+// die sie eigentlich gar nicht benötigt. Wegen eines nicht ausreichend spezifischen Interfaces muss sie diese Methoden
+// trotzdem implementieren, häufig nur mit leeren Platzhalter-Implementierungen.
 //
+// Zusammengefasst:
+// Beim Liskov Substitution Principle liegt der Fokus auf dem Verhalten von Klassen und Unterklassen, damit das erwartete Ergebnis erhalten bleibt.
+//
+// Beim Interface Segregation Principle liegt der Fokus stärker auf der Struktur der Interfaces, also auf ihrer Klarheit und Isolation,
+// damit keine unnötigen Abhängigkeiten erzwungen werden.
 
 abstract class Person {
   void rest();

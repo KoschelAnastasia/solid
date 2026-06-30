@@ -1,21 +1,41 @@
-// Liskov Substitution (LSP):
-// Коротко: объекты подкласса должны свободно подставляться вместо объектов базового класса без сюрпризов в поведении.
-// Более раскрыто: По принципу Лисков базовый тип должен быть взаимозаменяем с его подтипами без изменения ожидаемого
-// поведения. Это про контракты (Design by Contract) и накладывает ограничения на то, как наследование сочетается с ними:
-// - Подклассы не должны усиливать предусловия, заданные базовым классом.
-// - Подклассы не должны ослаблять постусловия, заданные базовым классом.
-// - Инварианты базового класса должны сохраняться в подклассе.
-// - Если базовый класс не предусматривал мутаторов для своих свойств, то и подтип не должен их вводить.
+// Liskov Substitution Principle (LSP):
+
+// Kurz gesagt: Objekte einer Unterklasse sollten problemlos anstelle von Objekten der Basisklasse verwendet werden können,
+// ohne überraschendes Verhalten zu verursachen.
 //
-// Давайте рассмотрим классический пример с птицами. У нас есть базовый интерфейс Bird, который объявляет метод fly.
-// И на его основе мы создаём два подкласса: Duck и Penguin. По здравому смыслу утка летает, а пингвин — нет.
-// Но с точки зрения кода контракт говорит: «любая Bird умеет fly()». Если мы не меняем контракт и пытаемся «обойти» это,
-// то в Penguin мы реализуем fly() через выбрасывание исключения. Здесь и происходит нарушение LSP: мы фактически
-// ослабляем постусловие метода fly() — вместо «метод выполняется» получаем «иногда бросает ошибку».
-// В реальном коде это приведёт к тому, что функция, принимающая Bird и вызывающая fly(), при подстановке Penguin
-// падает в рантайме, что чревато непредсказуемыми последствиями.
+// Etwas ausführlicher: Nach dem Liskov Substitutionsprinzip muss ein Basistyp durch seine Subtypen ersetzbar sein,
+// ohne dass sich das erwartete Verhalten ändert.
 //
-// Как нам решить эту проблему? Давайте перейдем в файл lib\liskov_substitution\good_liskov.dart и посмотрим...
+// Dabei geht es um Verträge, also um Design by Contract. Das Prinzip legt Einschränkungen dafür fest,
+// wie Vererbung mit solchen Verträgen zusammenspielt:
+//
+// - Unterklassen dürfen die Vorbedingungen der Basisklasse nicht verschärfen.
+//
+// - Unterklassen dürfen die Nachbedingungen der Basisklasse nicht abschwächen.
+//
+// - Invarianten der Basisklasse müssen auch in der Unterklasse erhalten bleiben.
+//
+// - Wenn die Basisklasse keine Mutatoren für ihre Eigenschaften vorsieht, sollte auch ein Subtyp keine solchen
+// Mutatoren einführen.
+//
+// Schauen wir uns dazu ein klassisches Beispiel mit Vögeln an. Wir haben ein Basis-Interface Bird, das die Methode
+// fly deklariert.
+//
+// Darauf basierend erstellen wir zwei Unterklassen: Duck und Penguin.
+//
+// Nach gesundem Menschenverstand kann eine Ente fliegen, ein Pinguin aber nicht. Aus Sicht des Codes sagt der Vertrag jedoch:
+// „Jede Bird kann fly() ausführen“. Wenn wir diesen Vertrag nicht ändern und versuchen, das Problem zu umgehen,
+// implementieren wir fly() in Penguin so, dass eine Exception geworfen wird.
+//
+// Genau hier entsteht die Verletzung des LSP:
+// Wir schwächen faktisch die Nachbedingung der Methode fly() ab. Statt „die Methode wird ausgeführt“ erhalten wir:
+// „die Methode wirft unter bestimmten Umständen einen Fehler“.
+//
+// In echtem Code führt das dazu, dass eine Funktion, die Bird entgegennimmt und fly() aufruft, beim Einsetzen von
+// Penguin zur Laufzeit abstürzt. Das kann unvorhersehbare Folgen haben.
+//
+// Wie lösen wir dieses Problem? Wechseln wir dazu in die Datei lib\liskov_substitution\good_liskov.dart
+// und schauen uns das an ...
 
 abstract class Bird {
   void fly();
